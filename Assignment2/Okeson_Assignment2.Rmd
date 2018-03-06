@@ -1,0 +1,6 @@
+---
+title: "Okeson_Assignment2"
+author: "Morgan Okeson"
+date: "February 14, 2018"
+output: html_document
+---
