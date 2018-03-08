@@ -4,3 +4,15 @@ author: "Morgan Okeson"
 date: "February 14, 2018"
 output: html_document
 ---
+
+```{r echo=F}
+Pcpn_08<-readRDS(file="./Data/USAAnnualPcpn1950_2008.rds")
+```
+
+```{r echo=F}
+Temp_08<-readRDS(file="./Data/USAAnnualTemp1950_2008.rds")
+```
+
+```{r echo=F}
+Pcpn_16<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
+```
