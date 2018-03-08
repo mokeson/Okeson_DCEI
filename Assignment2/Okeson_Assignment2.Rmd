@@ -5,14 +5,30 @@ date: "February 14, 2018"
 output: html_document
 ---
 
+<!---Chunk for prep--->
 ```{r echo=F}
+#Dependencies: none (Because there is nothing before this?)
+
+#Load required packages
+  #Fill in
+
+#Other general prep
+  #Fill in
+
+#New variables created: none, packages loaded
+```
+
+<!---Chunk for loading the data--->
+```{r echo=F, cache=T}
+#What does cache do? 
+#Do I need to load all 3 of these data sets? 
+#Will this be something that I just replace temp 08 here and then I would not have to replace the whole code? 
 Pcpn_08<-readRDS(file="./Data/USAAnnualPcpn1950_2008.rds")
-```
-
-```{r echo=F}
 Temp_08<-readRDS(file="./Data/USAAnnualTemp1950_2008.rds")
+Pcpn_16<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
 ```
 
-```{r echo=F}
-Pcpn_16<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
+<!---Chunk for cleaning the data--->
+```{r echo=F, cache=T,  }
+#In the "Advanced Modularity" lecture the code chunk had cache.extra=list (dat), why? is this important? 
 ```
