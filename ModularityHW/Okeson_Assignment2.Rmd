@@ -10,6 +10,7 @@ output: html_document
 #Load required packages
 library(knitr)
 library(data.table)
+library(maps)
 knitr::opts_chunk$set(cache=T)
 
 ```
@@ -17,11 +18,63 @@ knitr::opts_chunk$set(cache=T)
 <!---Chunk for loading the data--->
 ```{r echo=F, cache=T}
 #Import Data
+#Modularity lesson 2: Think about goals- I can read a new file easily here and won't have to change the code below
 Temp<-readRDS(file="./Data/USAAnnualTemp1950_2008.rds")
 Pcpn<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
 ```
 
 <!---Chunk for cleaning the data--->
 ```{r echo=F, cache=T, cache.extra=list(Temp,Pcpn)}
- 
+#Convert data
+dt.temp <- data.table(Temp)
+dt.pcpn<- data.table(Pcpn)
+#Modularize lesson: temp and precip to aviod copy and pasting
+  #Don't quite know how to use this in my code
+  #Use modularity lesson 3: Revise code
+dt.list<-list(dt.temp,dt.pcpn)
+#Locating stations
+loc<-c("state","name","lat","lon")
+#Sort data
+
+#Eliminate locations w/ fewer than 40 years of data
+
+```
+
+<!---Chunk for Linear Regression--->
+```{r echo=F, cache=T}
+#Linear regression
+  #Suggested by classmate, not sure how to use this
+#Dependent on finding locations with 40+ years of data
+#Used to find intercept and slope
+
+```
+
+<!---Chunk for extracting slope--->
+```{r echo=F, cache=T}
+#Extracting slope from models
+  #Suggested by classmate, not sure how to use this
+#Dependent on linear regression
+
+```
+
+<!---Chunk for cleaning dataframe--->
+```{r echo=F, cache=T}
+  #Suggested by classmate, not sure how to use this
+
+```
+
+<!---Chunk for preparing for mapping--->
+```{r echo=F, cache=T}
+
+
+```
+
+<!---Chunk for Precip Map--->
+```{r echo=F, cache=T}
+
+```
+
+<!---Chunk for Temp Map--->
+```{r echo=F, cache=T}
+
 ```
