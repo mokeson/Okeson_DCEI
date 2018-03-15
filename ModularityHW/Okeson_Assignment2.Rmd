@@ -1,0 +1,27 @@
+---
+title: "Okeson_Assignment2"
+author: "Morgan Okeson"
+date: "February 14, 2018"
+output: html_document
+---
+
+<!---Chunk for prep--->
+```{r echo=F}
+#Load required packages
+library(knitr)
+library(data.table)
+knitr::opts_chunk$set(cache=T)
+
+```
+
+<!---Chunk for loading the data--->
+```{r echo=F, cache=T}
+#Import Data
+Temp<-readRDS(file="./Data/USAAnnualTemp1950_2008.rds")
+Pcpn<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
+```
+
+<!---Chunk for cleaning the data--->
+```{r echo=F, cache=T, cache.extra=list(Temp,Pcpn)}
+ 
+```
