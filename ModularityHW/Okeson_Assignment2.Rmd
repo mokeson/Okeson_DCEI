@@ -46,7 +46,7 @@ dt.list<-list(dt.temp,dt.pcpn)
 loc<-c("state","name","lat","lon")
 ```
 
-<!---Chunk for subsetting the data--->
+<!---Chunk for subsetting the data (help from classmate, not sure I am doing it right)--->
 ```{r echo=F, cache=T}
 #Modularity lesson 8: several commented blocks
 
@@ -54,11 +54,17 @@ loc<-c("state","name","lat","lon")
 df<-lapply(dt.list,function(x) split(x, paste(x$lat,x$lon)))
 
 #Eliminate locations w/ fewer than 40 years of data
-max = 20
+max = 19
 gt40<-vector('list', length(data))
 for(i in seq_along(df)){
   gt40[[i]]<-df[[i]][lapply(df[[i]],function(x)sum(is.na(x)))<=max]
 }
+```
+
+<!---Alternative chunk for subsetting the data--->
+```{r echo=F, cache=T}
+temp.na<-na.omit(dt.temp)
+pcpn.na<-na.omit(dt.pcpn)
 ```
 
 <!---Chunk for Linear Regression--->
