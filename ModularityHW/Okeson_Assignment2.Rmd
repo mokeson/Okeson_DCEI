@@ -7,6 +7,9 @@ output: html_document
 
 <!---Chunk for prep--->
 ```{r echo=F}
+#Modularity lessons 4 and 5: I started out by orginizing chunks based on what I knew I had to do- 1) what I would need for input 2) what I would get an an output, 3) type of code I would need to write.
+#Modularity lesson 7: by using block headers I was able to come back to the code I wanted to write later and have an idea of the direction I had planned out. 
+
 #Load required packages
 library(knitr)
 library(data.table)
@@ -20,29 +23,42 @@ knitr::opts_chunk$set(cache=T)
 
 <!---Chunk for loading the data--->
 ```{r echo=F, cache=T}
-#Import Data
 #Modularity lesson 2: Think about goals- I can read a replacement file easily here and won't have to change the code below
-Temp<-readRDS(file="./Data/USAAnnualTemp1950_2008.rds")
-Pcpn<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
+#Modularity lesson 3: Revised my code on 03/22/2018 because I noticed errors and found better ways to clean the data
+
+#Import Data
+Temp<-readRDS(file="./Data/USAAnnualTemp1950_2016.rds")
+Pcpn<-readRDS(file="./Data/USAAnnualPcpn1950_2016.rds")
 ```
 
 <!---Chunk for cleaning the data--->
-```{r echo=F, cache=T, cache.extra=list(Temp,Pcpn)}
+```{r echo=F, cache=T}
+#Modularity lesson 8: several commented blocks
+
 #Convert data
 dt.temp <- data.table(Temp)
 dt.pcpn<- data.table(Pcpn)
-#Modularize lesson: temp and precip to aviod copy and pasting
-  #Don't quite know how to use this in my code
-  #Use modularity lesson 3: Revise code
+
+#List of df
 dt.list<-list(dt.temp,dt.pcpn)
+
 #Locating stations
 loc<-c("state","name","lat","lon")
-#Subset data
-#Eliminating na values
-temp.na<-na.omit(dt.temp)
-pcpn.na<-na.omit(dt.pcpn)
-#Eliminate locations w/ fewer than 40 years of data
+```
 
+<!---Chunk for subsetting the data--->
+```{r echo=F, cache=T}
+#Modularity lesson 8: several commented blocks
+
+#Subset data
+df<-lapply(dt.list,function(x) split(x, paste(x$lat,x$lon)))
+
+#Eliminate locations w/ fewer than 40 years of data
+max = 20
+gt40<-vector('list', length(data))
+for(i in seq_along(df)){
+  gt40[[i]]<-df[[i]][lapply(df[[i]],function(x)sum(is.na(x)))<=max]
+}
 ```
 
 <!---Chunk for Linear Regression--->
